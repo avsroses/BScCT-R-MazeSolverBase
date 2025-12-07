@@ -8,7 +8,7 @@ courses or with different motors. */
 
 #include <Pololu3piPlus32U4.h>
 #include <PololuMenu.h>
-#include "Constants.h"
+#include "Shared.h"
 
 using namespace Pololu3piPlus32U4;
 
