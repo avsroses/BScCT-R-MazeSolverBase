@@ -9,6 +9,7 @@ courses or with different motors. */
 #include <Pololu3piPlus32U4.h>
 #include <PololuMenu.h>
 #include "Shared.h"
+#include "MazeSolver.h"
 
 using namespace Pololu3piPlus32U4;
 
@@ -64,6 +65,8 @@ uint16_t calibrationSpeed;
 
 uint16_t proportional; // coefficient of the P term * 256
 uint16_t derivative; // coefficient of the D term * 256
+
+MazeSolver mazeSolver;
 
 void selectHyper()
 {
@@ -231,36 +234,5 @@ void setup()
 
 void loop()
 {
-  // Get the position of the line.  Note that we *must* provide
-  // the "lineSensorValues" argument to readLineBlack() here, even
-  // though we are not interested in the individual sensor
-  // readings.
-  int16_t position = lineSensors.readLineBlack(lineSensorValues);
-
-  // Our "error" is how far we are away from the center of the
-  // line, which corresponds to position 2000.
-  int16_t error = position - 2000;
-
-  // Get motor speed difference using proportional and derivative
-  // PID terms (the integral term is generally not very useful
-  // for line following).
-  int16_t speedDifference = error * (int32_t)proportional / 256  + (error - lastError) * (int32_t)derivative / 256;
-
-  lastError = error;
-
-  // Get individual motor speeds.  The sign of speedDifference
-  // determines if the robot turns left or right.
-  int16_t leftSpeed = (int16_t)baseSpeed + speedDifference;
-  int16_t rightSpeed = (int16_t)baseSpeed - speedDifference;
-
-  // Constrain our motor speeds to be between 0 and maxSpeed.
-  // One motor will always be turning at maxSpeed, and the other
-  // will be at maxSpeed-|speedDifference| if that is positive,
-  // else it will be stationary.  For some applications, you
-  // might want to allow the motor speed to go negative so that
-  // it can spin in reverse.
-  leftSpeed = constrain(leftSpeed, minSpeed, (int16_t)maxSpeed);
-  rightSpeed = constrain(rightSpeed, minSpeed, (int16_t)maxSpeed);
-
-  motors.setSpeeds(leftSpeed, rightSpeed);
+  mazeSolver.loop();
 }
