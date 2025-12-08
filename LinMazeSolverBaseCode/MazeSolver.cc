@@ -71,11 +71,18 @@ void MazeSolver::turnLeft() {
 }
 
 
+void MazeSolver::checkIfDeadEnd() {
+  if(lineSensorValues[2] = 0) {
+    state = U_TURN;
+  }
+}
+
 void MazeSolver::loop() {
   if (state == LINE_FOLLOWER) {
     display.clear();
     followLine();
     checkIfJunction();
+    checkIfDeadEnd();
   }
 
   if (state == JUNCTION) {

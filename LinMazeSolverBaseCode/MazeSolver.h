@@ -21,6 +21,8 @@ class MazeSolver {
   void identifyJunction();
 
   void turnLeft();
+
+  void checkIfDeadEnd();
   
   public:
 
