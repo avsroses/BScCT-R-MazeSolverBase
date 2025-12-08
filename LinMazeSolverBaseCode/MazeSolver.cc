@@ -39,6 +39,17 @@ void MazeSolver::checkIfJunction() {
   }
 }
 
+void MazeSolver::identifyJunction() {
+  if(lineSensorValues[0] == 1000 && lineSensorValues[1] == 1000 && lineSensorValues[2] ==1000 && lineSensorValues[3] ==1000 && lineSensorValues[4] ==1000) {
+    state = FINISHED;
+    return;
+  } else if (lineSensorValues[0] >= 950) {
+    state = TURN_LEFT;
+    return;
+  } else {
+    state == LINE_FOLLOWER;
+  }
+}
 
 
 void MazeSolver::loop() {
