@@ -33,18 +33,18 @@ void MazeSolver::followLine() {
 
 
 //check for junction 
-void MazeSolver::checkIfJunction() {
-  if (lineSensorValues[0] >= 950 || lineSensorValues[4] >= 950) {
+void MazeSolver::checkPathChange() {
+  if (lineSensorValues[1] >= 950 || lineSensorValues[3] >= 950) {
     state = JUNCTION;
   }
 }
 
-void MazeSolver::identifyJunction() {
+void MazeSolver::identifyPathChange() {
 
   display.clear();
   //display.print(state);
   motors.setSpeeds(baseSpeed, baseSpeed);
-  delay(50);
+  delay(1000);
   motors.setSpeeds(0,0);
   lineSensors.readLineBlack(lineSensorValues);
 
@@ -62,20 +62,20 @@ void MazeSolver::identifyJunction() {
 
 void MazeSolver::turnLeft() {
   motors.setSpeeds(minSpeed , maxSpeed);
-  delay(350);
+  delay(600);
   motors.setSpeeds(0,0);
   state = LINE_FOLLOWER;
 }
 
 void MazeSolver::checkIfDeadEnd() {
-  if(lineSensorValues[2] <= 50 && lineSensorValues[1] <= 50 && lineSensorValues[3] <= 50) {
+  if(lineSensorValues[2] <= 50 && lineSensorValues[1] <= 50 && lineSensorValues[3] <= 50 && lineSensorValues[0] <= 50 && lineSensorValues[4] <= 50) {
     state = U_TURN;
   }
 }
 
 void MazeSolver::uTurn() {
   motors.setSpeeds(minSpeed, maxSpeed);
-  delay(720);
+  delay(800);
   motors.setSpeeds(0,0);
   state = LINE_FOLLOWER;
 }
@@ -83,30 +83,32 @@ void MazeSolver::uTurn() {
 void MazeSolver::loop() {
   if (state == LINE_FOLLOWER) {
     display.clear();
+    display.print('A');
     followLine();
-    checkIfJunction();
-    checkIfDeadEnd();
+    checkPathChange();
+    //checkIfDeadEnd();
+  
   }
 
   if (state == JUNCTION) {
     // call junciton identifier function
     display.clear();
     display.print('J');
-    identifyJunction();
+    identifyPathChange();
   }
   if (state == TURN_LEFT) {
     // call left turn function
     motors.setSpeeds(0, 0);
     display.clear();
     display.print('L');
-    turnLeft();
+    //turnLeft();
   }
   if (state == U_TURN) {
     // call u turn function
     motors.setSpeeds(0, 0);
     display.clear();
     display.print('U');
-    uTurn();
+    //uTurn();
   }
   if (state == FINISHED) {
     motors.setSpeeds(0, 0);
