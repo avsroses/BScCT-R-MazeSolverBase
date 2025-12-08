@@ -23,6 +23,8 @@ class MazeSolver {
   void turnLeft();
 
   void checkIfDeadEnd();
+
+  void uTurn();
   
   public:
 
