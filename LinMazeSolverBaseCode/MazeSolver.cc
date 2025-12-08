@@ -40,29 +40,38 @@ void MazeSolver::checkIfJunction() {
 }
 
 void MazeSolver::identifyJunction() {
-  if(lineSensorValues[0] == 1000 && lineSensorValues[1] == 1000 && lineSensorValues[2] ==1000 && lineSensorValues[3] ==1000 && lineSensorValues[4] ==1000) {
+
+  display.clear();
+  //display.print(state);
+  motors.setSpeeds(baseSpeed, baseSpeed);
+  delay(50);
+  motors.setSpeeds(0,0);
+  lineSensors.readLineBlack(lineSensorValues);
+
+  if(lineSensorValues[0] >= 950 && lineSensorValues[1] >= 950 && lineSensorValues[2] >= 950 && lineSensorValues[3] >= 950 && lineSensorValues[4] >= 950) {
     state = FINISHED;
     return;
-  } else if (lineSensorValues[0] >= 950) {
+  } else if (lineSensorValues[0] >= 950 && lineSensorValues[4] <= 100) {
     state = TURN_LEFT;
     return;
   } else {
-    state == LINE_FOLLOWER;
+    state = LINE_FOLLOWER;
   }
 }
 
 
 void MazeSolver::loop() {
   if (state == LINE_FOLLOWER) {
+    display.clear();
     followLine();
     checkIfJunction();
   }
 
   if (state == JUNCTION) {
     // call junciton identifier function
-    motors.setSpeeds(0, 0);
     display.clear();
     display.print('J');
+    identifyJunction();
   }
   if (state == TURN_LEFT) {
     // call left turn function
