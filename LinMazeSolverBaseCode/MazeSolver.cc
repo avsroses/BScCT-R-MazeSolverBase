@@ -34,17 +34,20 @@ void MazeSolver::followLine() {
 
 //check for junction 
 void MazeSolver::checkPathChange() {
-  if (lineSensorValues[1] >= 950 || lineSensorValues[3] >= 950) {
+  if ((lineSensorValues[1] >= 950 && lineSensorValues[0] >= 400) || (lineSensorValues[3] >= 950 && lineSensorValues[4]>= 400)) {
     state = JUNCTION;
   }
 }
 
-void MazeSolver::identifyPathChange() {
+bool first = true;
 
+void MazeSolver::identifyPathChange() {
+  if(!first) return;
+  first = false;
   display.clear();
   //display.print(state);
   motors.setSpeeds(baseSpeed, baseSpeed);
-  delay(1000);
+  delay(500);
   motors.setSpeeds(0,0);
   lineSensors.readLineBlack(lineSensorValues);
 
@@ -55,7 +58,8 @@ void MazeSolver::identifyPathChange() {
     state = TURN_LEFT;
     return;
   } else {
-    state = LINE_FOLLOWER;
+    motors.setSpeeds(0, 0);
+    //state = LINE_FOLLOWER;
   }
 }
 
