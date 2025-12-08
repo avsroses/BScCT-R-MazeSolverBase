@@ -31,9 +31,20 @@ void MazeSolver::followLine() {
   motors.setSpeeds(leftSpeed, rightSpeed);
 }
 
+
+//check for junction 
+void MazeSolver::checkIfJunction() {
+  if (lineSensorValues[0] >= 950 || lineSensorValues[4] >= 950) {
+    state = JUNCTION;
+  }
+}
+
+
+
 void MazeSolver::loop() {
   if (state == LINE_FOLLOWER) {
     followLine();
+    checkIfJunction();
   }
 
   if (state == JUNCTION) {
