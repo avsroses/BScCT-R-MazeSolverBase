@@ -19,6 +19,8 @@ class MazeSolver {
   void checkIfJunction();
 
   void identifyJunction();
+
+  void turnLeft();
   
   public:
 

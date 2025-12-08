@@ -51,12 +51,23 @@ void MazeSolver::identifyJunction() {
   if(lineSensorValues[0] >= 950 && lineSensorValues[1] >= 950 && lineSensorValues[2] >= 950 && lineSensorValues[3] >= 950 && lineSensorValues[4] >= 950) {
     state = FINISHED;
     return;
-  } else if (lineSensorValues[0] >= 950 && lineSensorValues[4] <= 100) {
+  } else if (lineSensorValues[0] >= 950) {
     state = TURN_LEFT;
     return;
   } else {
     state = LINE_FOLLOWER;
   }
+}
+
+bool first = true;
+
+void MazeSolver::turnLeft() {
+  if(!first) return;
+  motors.setSpeeds(minSpeed , maxSpeed);
+  delay(350);
+  motors.setSpeeds(0,0);
+  first = false;
+  state = LINE_FOLLOWER;
 }
 
 
@@ -78,6 +89,7 @@ void MazeSolver::loop() {
     motors.setSpeeds(0, 0);
     display.clear();
     display.print('L');
+    turnLeft();
   }
   if (state == U_TURN) {
     // call u turn function
