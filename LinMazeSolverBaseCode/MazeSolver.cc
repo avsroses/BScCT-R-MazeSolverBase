@@ -47,7 +47,7 @@ void MazeSolver::identifyPathChange() {
   display.clear();
   //display.print(state);
   motors.setSpeeds(baseSpeed, baseSpeed);
-  delay(300);
+  delay(100);
   motors.setSpeeds(0,0);
   lineSensors.readLineBlack(lineSensorValues);
 
