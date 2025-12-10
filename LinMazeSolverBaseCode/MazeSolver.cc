@@ -47,7 +47,7 @@ void MazeSolver::identifyPathChange() {
   // if(!first) return;
   // first = false;
   motors.setSpeeds(baseSpeed, baseSpeed);
-  delay(50);
+  delay(60);
   motors.setSpeeds(0,0);
   lineSensors.readLineBlack(lineSensorValues);
 
@@ -61,7 +61,6 @@ void MazeSolver::identifyPathChange() {
     return;
   //junction must be a straight ahead and right, so robot goes straight
   } else {
-    motors.setSpeeds(0, 0);
     state = LINE_FOLLOWER;
   }
 }
@@ -75,14 +74,14 @@ void MazeSolver::turnLeft() {
 }
 
 void MazeSolver::checkIfDeadEnd() {
-  if(lineSensorValues[2] <= 20 && lineSensorValues[1] <= 20 && lineSensorValues[3] <= 20 && lineSensorValues[0] <= 20 && lineSensorValues[4] <= 20) {
+  if(lineSensorValues[0] <= 20 && lineSensorValues[1] <= 20 && lineSensorValues[2] <= 20 && lineSensorValues[3] <= 20 && lineSensorValues[4] <= 20) {
     state = U_TURN;
   }
 }
 
 void MazeSolver::uTurn() {
   motors.setSpeeds(minSpeed, maxSpeed);
-  delay(600);
+  delay(650);
   motors.setSpeeds(0,0);
   delay(200);
   motors.setSpeeds(maxSpeed, maxSpeed);
@@ -90,6 +89,7 @@ void MazeSolver::uTurn() {
   state = LINE_FOLLOWER;
 }
 
+//LOOP 
 void MazeSolver::loop() {
   if (state == LINE_FOLLOWER) {
     display.clear();
