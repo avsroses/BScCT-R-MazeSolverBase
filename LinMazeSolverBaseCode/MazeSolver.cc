@@ -34,9 +34,20 @@ void MazeSolver::followLine() {
 
 //check for junction 
 bool MazeSolver::checkPathChange() {
-  if ((lineSensorValues[1] >= 950 && lineSensorValues[0] >= 400) || (lineSensorValues[3] >= 950 && lineSensorValues[4]>= 400)) {
+  if (lineSensorValues[0] > 950 & lineSensorValues[2] > 950){
     state = JUNCTION;
-    motors.setSpeeds(0,0);
+    return true;
+  }
+  if (lineSensorValues[2] > 950 & lineSensorValues[3] > 950){
+    state = JUNCTION;
+    return true;
+  }
+  if (lineSensorValues[0] > 950 & lineSensorValues[2] > 950 & lineSensorValues[4] > 950){
+    state = JUNCTION;
+    return true;
+  }
+   if (lineSensorValues[0] > 950 & lineSensorValues[4] > 950){
+    state = JUNCTION;
     return true;
   }
 }
@@ -56,12 +67,17 @@ void MazeSolver::identifyPathChange() {
     state = FINISHED;
     return;
   //the left sensor detects a black line
-  } else if (lineSensorValues[0] >= 950) {
+  } else if (lineSensorValues[0] > 950 & lineSensorValues[2] > 950){
     state = TURN_LEFT;
-    return;
-  //junction must be a straight ahead and right, so robot goes straight
-  } else {
+  //the right sensor detects line
+  } else if (lineSensorValues[2] > 950 & lineSensorValues[4] > 950){
     state = LINE_FOLLOWER;
+  //theres a left and a right turn, so turn left
+  } else if (lineSensorValues[0] > 950 & lineSensorValues[2] > 950 & lineSensorValues[4] > 950){
+    state = TURN_LEFT;
+  //theres a left and a right turn, so turn left
+  } else if (lineSensorValues[0] > 950 & lineSensorValues[4] > 950){
+    state = TURN_LEFT;
   }
 }
 
