@@ -72,7 +72,7 @@ void MazeSolver::turnLeft() {
 }
 
 void MazeSolver::checkIfDeadEnd() {
-  if(lineSensorValues[2] <= 50 && lineSensorValues[1] <= 50 && lineSensorValues[3] <= 50 && lineSensorValues[0] <= 50 && lineSensorValues[4] <= 50) {
+  if(lineSensorValues[2] <= 20 && lineSensorValues[1] <= 20 && lineSensorValues[3] <= 20 && lineSensorValues[0] <= 20 && lineSensorValues[4] <= 20) {
     state = U_TURN;
   }
 }
