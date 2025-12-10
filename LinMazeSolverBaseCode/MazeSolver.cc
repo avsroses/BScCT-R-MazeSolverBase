@@ -33,40 +33,43 @@ void MazeSolver::followLine() {
 
 
 //check for junction 
-void MazeSolver::checkPathChange() {
+bool MazeSolver::checkPathChange() {
   if ((lineSensorValues[1] >= 950 && lineSensorValues[0] >= 400) || (lineSensorValues[3] >= 950 && lineSensorValues[4]>= 400)) {
     state = JUNCTION;
+    motors.setSpeeds(0,0);
+    return true;
   }
 }
 
-bool first = true;
+// bool first = true;
 
 void MazeSolver::identifyPathChange() {
-  if(!first) return;
-  first = false;
-  display.clear();
-  //display.print(state);
+  // if(!first) return;
+  // first = false;
   motors.setSpeeds(baseSpeed, baseSpeed);
-  delay(75);
+  delay(50);
   motors.setSpeeds(0,0);
   lineSensors.readLineBlack(lineSensorValues);
 
+  //detects solid black line in all sensors
   if(lineSensorValues[0] >= 950 && lineSensorValues[1] >= 950 && lineSensorValues[2] >= 950 && lineSensorValues[3] >= 950 && lineSensorValues[4] >= 950) {
     state = FINISHED;
     return;
+  //the left sensor detects a black line
   } else if (lineSensorValues[0] >= 950) {
     state = TURN_LEFT;
     return;
+  //junction must be a straight ahead and right, so robot goes straight
   } else {
     motors.setSpeeds(0, 0);
-    //state = LINE_FOLLOWER;
+    state = LINE_FOLLOWER;
   }
 }
 
 
 void MazeSolver::turnLeft() {
   motors.setSpeeds(minSpeed , maxSpeed);
-  delay(600);
+  delay(350);
   motors.setSpeeds(0,0);
   state = LINE_FOLLOWER;
 }
@@ -79,19 +82,25 @@ void MazeSolver::checkIfDeadEnd() {
 
 void MazeSolver::uTurn() {
   motors.setSpeeds(minSpeed, maxSpeed);
-  delay(800);
+  delay(600);
   motors.setSpeeds(0,0);
+  delay(200);
+  motors.setSpeeds(maxSpeed, maxSpeed);
+  delay(200);
   state = LINE_FOLLOWER;
 }
 
 void MazeSolver::loop() {
   if (state == LINE_FOLLOWER) {
     display.clear();
-    display.print('A');
+    display.print("LINE");
     followLine();
     checkPathChange();
-    //checkIfDeadEnd();
-  
+    if (checkPathChange() != true) {
+      checkIfDeadEnd();
+    } 
+    else {
+    }
   }
 
   if (state == JUNCTION) {
@@ -105,14 +114,14 @@ void MazeSolver::loop() {
     motors.setSpeeds(0, 0);
     display.clear();
     display.print('L');
-    //turnLeft();
+    turnLeft();
   }
   if (state == U_TURN) {
     // call u turn function
     motors.setSpeeds(0, 0);
     display.clear();
     display.print('U');
-    //uTurn();
+    uTurn();
   }
   if (state == FINISHED) {
     motors.setSpeeds(0, 0);

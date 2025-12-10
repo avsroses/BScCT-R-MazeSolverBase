@@ -16,7 +16,7 @@ class MazeSolver {
 
   void followLine();
   //check junction 
-  void checkPathChange();
+  bool checkPathChange();
 
   void identifyPathChange();
 
