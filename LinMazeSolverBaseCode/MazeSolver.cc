@@ -30,6 +30,9 @@ void MazeSolver::followLine() {
   motors.setSpeeds(leftSpeed, rightSpeed);
 }
 
+//***********************
+//CHECKING FOR A JUNCTION
+//Check sensors to see if there could be a junction
 void MazeSolver::checkIfJunction() {
   lineSensors.readLineBlack(lineSensorValues);
 
@@ -47,18 +50,22 @@ void MazeSolver::checkIfJunction() {
   }
 }
 
+//******************
+//CHECK FOR DEAD END
+//
 void MazeSolver::checkIfDeadEnd() {
   lineSensors.readLineBlack(lineSensorValues);
   if (lineSensorValues[2] < 500) state = U_TURN;
 }
 
+
+//*****************
+//IDENTIFY JUNCTION
+//decided what junction is and change state accordingly
 void MazeSolver::identifyJunction() {
 
   display.clear();
-
   delay(500);
-
-
 
   // move forward to identify other junctions
   motors.setSpeeds(baseSpeed, baseSpeed);
@@ -66,14 +73,11 @@ void MazeSolver::identifyJunction() {
   motors.setSpeeds(0, 0);
   lineSensors.readLineBlack(lineSensorValues);
 
-
-
   // if can sense everywhere -> FINISHED
   if (lineSensorValues[0] > 950 && lineSensorValues[1] > 950 && lineSensorValues[2] > 950 && lineSensorValues[3] > 950 && lineSensorValues[4] > 950) {
     state = FINISHED;
     return;
   }
-
 
   // if there's a left take it
   if (lineSensorValues[0] > 750) {
@@ -94,7 +98,6 @@ void MazeSolver::identifyJunction() {
     state = TURN_RIGHT;
     return;
   }
-
 
   // any other case -> keep going
   state = LINE_FOLLOWER;
