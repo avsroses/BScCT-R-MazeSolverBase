@@ -9,6 +9,10 @@ MazeSolver::MazeSolver() {
   state = LINE_FOLLOWER;
 }
 
+//***********
+//FOLLOW LINE
+//follows line accounting for corrections 
+//***********
 void MazeSolver::followLine() {
   // get position & error
   int16_t position = lineSensors.readLineBlack(lineSensorValues);
@@ -33,6 +37,7 @@ void MazeSolver::followLine() {
 //***********************
 //CHECKING FOR A JUNCTION
 //Check sensors to see if there could be a junction
+//***********************
 void MazeSolver::checkIfJunction() {
   lineSensors.readLineBlack(lineSensorValues);
 
@@ -52,7 +57,8 @@ void MazeSolver::checkIfJunction() {
 
 //******************
 //CHECK FOR DEAD END
-//
+//checks if line ends
+//******************
 void MazeSolver::checkIfDeadEnd() {
   lineSensors.readLineBlack(lineSensorValues);
   if (lineSensorValues[2] < 500) state = U_TURN;
@@ -61,7 +67,8 @@ void MazeSolver::checkIfDeadEnd() {
 
 //*****************
 //IDENTIFY JUNCTION
-//decided what junction is and change state accordingly
+//decide what junction is and change state accordingly
+//*****************
 void MazeSolver::identifyJunction() {
 
   display.clear();
@@ -88,12 +95,10 @@ void MazeSolver::identifyJunction() {
   if (lineSensorValues[2] > 750) {
     motors.setSpeeds(baseSpeed, baseSpeed);
     delay(250);
-
     state = LINE_FOLLOWER;
     return;
   }
 
-  // if there's a left take it
   if (lineSensorValues[4] > 750) {
     state = TURN_RIGHT;
     return;
@@ -107,6 +112,10 @@ void MazeSolver::identifyJunction() {
 
 bool first = true;
 
+//*********
+//LEFT TURN
+//turns the robots direction to the left
+//*********
 void MazeSolver::turnLeft() {
 
   motors.setSpeeds(baseSpeed, baseSpeed);
@@ -119,6 +128,10 @@ void MazeSolver::turnLeft() {
   state = LINE_FOLLOWER;
 }
 
+//**********
+//RIGHT TURN
+//turns the robots direction to the right
+//**********
 void MazeSolver::turnRight() {
 
   motors.setSpeeds(baseSpeed, baseSpeed);
@@ -131,6 +144,10 @@ void MazeSolver::turnRight() {
   state = LINE_FOLLOWER;
 }
 
+//******
+//U-TURN
+//turns robot around to face opposite direction
+//******
 void MazeSolver::uTurn() {
   motors.setSpeeds(-baseSpeed, baseSpeed);
   delay(1450);
@@ -138,6 +155,10 @@ void MazeSolver::uTurn() {
   state = LINE_FOLLOWER;
 }
 
+//*****************
+//THE LOOP FUNCTION
+//changes the state that the robot follows based on checking for a junction or dead end
+//*****************
 void MazeSolver::loop() {
   // display.clear();
   display.gotoXY(0, 0);
