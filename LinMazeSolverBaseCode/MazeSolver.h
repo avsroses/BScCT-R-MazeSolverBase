@@ -17,17 +17,17 @@ class MazeSolver {
   State state; // value of type state
 
   void followLine();
-
+  //checking junction
   void checkIfJunction();
-
+  //checking for dead end
   void checkIfDeadEnd();
-
+  //checking what type of junction
   void identifyJunction();
-
+  //turn direction left
   void turnLeft();
-
+  //turn direction right
   void turnRight();
-
+  //turn robot around
   void uTurn();
   
   public:
