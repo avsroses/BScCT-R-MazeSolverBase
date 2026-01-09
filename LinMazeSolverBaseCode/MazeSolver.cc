@@ -77,7 +77,7 @@ void MazeSolver::identifyJunction() {
 
   // move forward to identify other junctions
   motors.setSpeeds(baseSpeed, baseSpeed);
-  delay(250);
+  delay(260);
   motors.setSpeeds(0, 0);
   lineSensors.readLineBlack(lineSensorValues);
 
@@ -134,7 +134,7 @@ void MazeSolver::turnLeft() {
   motors.setSpeeds(0, 0);
   //turns robot left
   motors.setSpeeds(-baseSpeed, baseSpeed);
-  delay(770);
+  delay(780);
   motors.setSpeeds(0, 0);
   state = LINE_FOLLOWER;
 }
@@ -149,7 +149,7 @@ void MazeSolver::turnRight() {
   motors.setSpeeds(0, 0);
   //turns robot right
   motors.setSpeeds(baseSpeed, -baseSpeed);
-  delay(770);
+  delay(780);
   motors.setSpeeds(0, 0);
   state = LINE_FOLLOWER;
 }
