@@ -7,7 +7,6 @@ using namespace Pololu3piPlus32U4;
 #include "Shared.h"
 MazeSolver::MazeSolver() {
   state = LINE_FOLLOWER;
-  decisions = FORWARD;
 }
 
 //***********
@@ -99,6 +98,8 @@ void MazeSolver::identifyJunction() {
     motors.setSpeeds(baseSpeed, baseSpeed);
     delay(110);
     state = LINE_FOLLOWER;
+    path[count]= FORWARD;
+    count++;
     return;
   }
 
@@ -120,7 +121,8 @@ bool first = true;
 //turns the robots direction to the left
 //*********
 void MazeSolver::turnLeft() {
-
+  path[count]= LEFT;
+  count++;
   motors.setSpeeds(baseSpeed, baseSpeed);
   delay(250);
   motors.setSpeeds(0, 0);
@@ -136,7 +138,8 @@ void MazeSolver::turnLeft() {
 //turns the robots direction to the right
 //**********
 void MazeSolver::turnRight() {
-
+  path[count]= RIGHT;
+  count++;
   motors.setSpeeds(baseSpeed, baseSpeed);
   delay(250);
   motors.setSpeeds(0, 0);
@@ -152,6 +155,8 @@ void MazeSolver::turnRight() {
 //turns robot around to face opposite direction
 //******
 void MazeSolver::uTurn() {
+  path[count]= BACK;
+  count++;
   motors.setSpeeds(-baseSpeed, baseSpeed);
   delay(1600);
   motors.setSpeeds(0, 0);

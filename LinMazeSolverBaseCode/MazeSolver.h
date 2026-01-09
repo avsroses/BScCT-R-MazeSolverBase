@@ -23,6 +23,9 @@ class MazeSolver {
   private:
   State state; // value of type state
 
+  Decisions path [64]; //vector for memory
+  int count = 0;
+
   void followLine();
   //checking junction
   void checkIfJunction();
