@@ -173,12 +173,13 @@ void MazeSolver::uTurn() {
 //displays the path of decisions on screen
 //**********************
 void MazeSolver::displayOnScreen() {
-  display.clear();
+  display.gotoXY(0, 0);
   for (int i = 0; i <= 7; i++) {
     display.print(path[i]);
   }
+
+  display.gotoXY(0, 1);
   for (int j = 8; j <= 15; j++) {
-    display.gotoXY(0, 1);
     display.print(path[j]);
   }
 }
