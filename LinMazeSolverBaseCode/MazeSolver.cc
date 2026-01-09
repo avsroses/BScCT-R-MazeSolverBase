@@ -89,18 +89,16 @@ void MazeSolver::identifyJunction() {
 
   // if there's a left take it
   if (lineSensorValues[0] > 750) {
+    if(lineSensorValues[2] > 750 || lineSensorValues[4] > 750) {
+      state = TURN_LEFT;
+      path[count]= LEFT;
+      count++;
+      displayOnScreen();
+    }
     state = TURN_LEFT;
     return;
-  }
+  } 
 
-  //storing left only if a decision is made
-  if (lineSensorValues[2] > 750 || lineSensorValues[4] > 750) {
-    state = TURN_LEFT;
-    path[count]= LEFT;
-    count++;
-    displayOnScreen();
-    return;
-  }
 
   if (lineSensorValues[2] > 750) {
     motors.setSpeeds(baseSpeed, baseSpeed);
@@ -114,6 +112,9 @@ void MazeSolver::identifyJunction() {
   }
 
   if (lineSensorValues[4] > 750) {
+    // path[count]= RIGHT;
+    // count++;
+    // displayOnScreen();
     state = TURN_RIGHT;
     return;
   }
@@ -146,9 +147,6 @@ void MazeSolver::turnLeft() {
 //turns the robots direction to the right
 //**********
 void MazeSolver::turnRight() {
-  // path[count]= RIGHT;
-  // count++;
-  // displayOnScreen();
   motors.setSpeeds(baseSpeed, baseSpeed);
   delay(250);
   motors.setSpeeds(0, 0);
