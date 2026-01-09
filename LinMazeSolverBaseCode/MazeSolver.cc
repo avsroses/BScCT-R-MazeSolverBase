@@ -172,7 +172,9 @@ void MazeSolver::uTurn() {
 //Changing numerial value of direction to a letter
 //**********************
 char MazeSolver::directionToCharacter(Decisions d) {
-  if (d == RIGHT){
+  if (d == NONE) {
+    return ' ';
+  }else if (d == RIGHT){
     return 'R';
   } else if (d == LEFT){
     return 'L';
@@ -190,12 +192,14 @@ char MazeSolver::directionToCharacter(Decisions d) {
 void MazeSolver::displayOnScreen() {
   display.gotoXY(0, 0);
   for (int i = 0; i <= 7; i++) {
-    display.print(path[i]);
+    // Direction d = path[i];
+    // char character = directionToCharacter(d);
+    display.print(directionToCharacter(path[i]));
   }
 
   display.gotoXY(0, 1);
   for (int j = 8; j <= 15; j++) {
-    display.print(path[j]);
+    display.print(directionToCharacter(path[j]));
   }
 }
 
