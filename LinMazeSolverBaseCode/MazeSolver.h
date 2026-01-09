@@ -39,6 +39,8 @@ class MazeSolver {
   void turnRight();
   //turn robot around
   void uTurn();
+  //change enum direction to characters
+  void directionToCharacter();
   //display path on screen
   void displayOnScreen();
   

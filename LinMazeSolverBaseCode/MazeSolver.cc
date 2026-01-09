@@ -73,7 +73,6 @@ void MazeSolver::checkIfDeadEnd() {
 //*****************
 void MazeSolver::identifyJunction() {
 
-  display.clear();
   delay(500);
 
   // move forward to identify other junctions
@@ -166,6 +165,14 @@ void MazeSolver::uTurn() {
   delay(1600);
   motors.setSpeeds(0, 0);
   state = LINE_FOLLOWER;
+}
+
+//**********************
+//DIRECTION TO CHARACTER
+//Changing numerial value of direction to a letter
+//**********************
+void MazeSolver::directionToCharacter() {
+  
 }
 
 //**********************
