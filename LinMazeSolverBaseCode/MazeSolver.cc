@@ -91,8 +91,7 @@ void MazeSolver::identifyJunction() {
   if (lineSensorValues[0] > 750) {
     if(lineSensorValues[2] > 750 || lineSensorValues[4] > 750) {
       state = TURN_LEFT;
-      path[count]= LEFT;
-      count++;
+      addDecision(LEFT);
       displayOnScreen();
     }
     state = TURN_LEFT;
@@ -105,15 +104,13 @@ void MazeSolver::identifyJunction() {
     delay(110);
     state = LINE_FOLLOWER;
     //memory
-    path[count]= FORWARD;
-    count++;
+    addDecision(FORWARD);
     displayOnScreen();
     return;
   }
 
   if (lineSensorValues[4] > 750) {
-    // path[count]= RIGHT;
-    // count++;
+    // addDecision(RIGHT);
     // displayOnScreen();
     state = TURN_RIGHT;
     return;
@@ -162,13 +159,60 @@ void MazeSolver::turnRight() {
 //turns robot around to face opposite direction
 //******
 void MazeSolver::uTurn() {
-  path[count]= BACK;
-  count++;
+  addDecision(BACK);
   displayOnScreen();
   motors.setSpeeds(-baseSpeed, baseSpeed);
   delay(1600);
   motors.setSpeeds(0, 0);
   state = LINE_FOLLOWER;
+}
+
+
+//************
+//ADD DECISIONS
+//adds decisions to path
+//************
+void MazeSolver::addDecision(Decisions d) {
+  path[count] = d;
+
+  if(path[count -1] == BACK) {
+    if(path[count - 2] == LEFT) {
+      if(path[count] == LEFT){ //LBL
+        path[count - 2] == FORWARD;
+        path[count] == NONE;
+        path[count - 1] == NONE;
+        count - 1;
+      } else if(path[count] == FORWARD) { //LBF
+        path[count - 2] == RIGHT;
+        path[count] == NONE;
+        path[count - 1] == NONE;
+        count - 1;
+      }
+    }
+    else if(path[count - 2] == FORWARD) { 
+      if(path[count] == LEFT) { //FBL
+        path[count - 2] == RIGHT;
+        path[count] == NONE;
+        path[count - 1] == NONE;
+        count - 1;
+      } else if(path[count] == FORWARD) { //FBF
+        path[count - 2] == BACK;
+        path[count] == NONE;
+        path[count - 1] == NONE;
+        count - 1;
+      }
+    }
+    else if(path[count - 2] == RIGHT) { //RBL
+      if(path[count] == LEFT){
+        path[count - 2] == BACK;
+        path[count] == NONE;
+        path[count - 1] == NONE;
+        count - 1;        
+      }
+    }
+  }
+  count ++;
+
 }
 
 //**********************

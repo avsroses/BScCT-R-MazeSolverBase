@@ -15,6 +15,7 @@ enum State {
 //enum of each decision made for memory
 enum Decisions {
   NONE,
+  RIGHT,
   LEFT,
   BACK,
   FORWARD
@@ -40,6 +41,8 @@ class MazeSolver {
   void turnRight();
   //turn robot around
   void uTurn();
+  //add decision function
+  void addDecision(Decisions d);
   //change enum direction to characters
   char directionToCharacter(Decisions d);
   //display path on screen
