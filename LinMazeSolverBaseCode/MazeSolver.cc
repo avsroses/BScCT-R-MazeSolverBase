@@ -101,6 +101,7 @@ void MazeSolver::identifyJunction() {
     //memory
     path[count]= FORWARD;
     count++;
+    displayOnScreen();
     return;
   }
 
@@ -124,6 +125,7 @@ bool first = true;
 void MazeSolver::turnLeft() {
   path[count]= LEFT;
   count++;
+  displayOnScreen();
   motors.setSpeeds(baseSpeed, baseSpeed);
   delay(250);
   motors.setSpeeds(0, 0);
@@ -141,6 +143,7 @@ void MazeSolver::turnLeft() {
 void MazeSolver::turnRight() {
   path[count]= RIGHT;
   count++;
+  displayOnScreen();
   motors.setSpeeds(baseSpeed, baseSpeed);
   delay(250);
   motors.setSpeeds(0, 0);
@@ -158,6 +161,7 @@ void MazeSolver::turnRight() {
 void MazeSolver::uTurn() {
   path[count]= BACK;
   count++;
+  displayOnScreen();
   motors.setSpeeds(-baseSpeed, baseSpeed);
   delay(1600);
   motors.setSpeeds(0, 0);
@@ -170,8 +174,12 @@ void MazeSolver::uTurn() {
 //**********************
 void MazeSolver::displayOnScreen() {
   display.clear();
-  for (int i = 0; i <= 63; i++) {
+  for (int i = 0; i <= 7; i++) {
     display.print(path[i]);
+  }
+  for(int j = 8; j <= 15; j++) {
+    display.gotoXY(0, 1);
+    display.print(path[j]);
   }
 }
 
