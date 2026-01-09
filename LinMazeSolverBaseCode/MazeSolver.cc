@@ -194,7 +194,7 @@ void MazeSolver::addDecision(Decisions d) {
         path[count - 2] = RIGHT;
         path[count] = NONE;
         path[count - 1] = NONE;
-        count - 1;
+        count = count - 2;
       } else if(path[count] == FORWARD) { //FBF
         path[count - 2] = BACK;
         path[count] = NONE;
