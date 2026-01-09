@@ -15,7 +15,6 @@ enum State {
 //enum of each decision made for memory
 enum Decisions {
   NONE,
-  RIGHT,
   LEFT,
   BACK,
   FORWARD
