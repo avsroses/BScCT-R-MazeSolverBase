@@ -39,6 +39,8 @@ class MazeSolver {
   void turnRight();
   //turn robot around
   void uTurn();
+  //display path on screen
+  void displayOnScreen();
   
   public:
 

@@ -98,6 +98,7 @@ void MazeSolver::identifyJunction() {
     motors.setSpeeds(baseSpeed, baseSpeed);
     delay(110);
     state = LINE_FOLLOWER;
+    //memory
     path[count]= FORWARD;
     count++;
     return;
@@ -162,6 +163,18 @@ void MazeSolver::uTurn() {
   motors.setSpeeds(0, 0);
   state = LINE_FOLLOWER;
 }
+
+//**********************
+//DISPLAY PATH ON SCREEN
+//displays the path of decisions on screen
+//**********************
+void MazeSolver::displayOnScreen() {
+  display.clear();
+  for (int i = 0; i <= 63; i++) {
+    display.print(path[i]);
+  }
+}
+
 
 //*****************
 //THE LOOP FUNCTION
