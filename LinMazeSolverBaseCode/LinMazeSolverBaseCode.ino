@@ -73,7 +73,7 @@ void selectStandard()
   minSpeed = -100;
   baseSpeed = maxSpeed;
   calibrationSpeed = 60;
-  proportional = 64; // P coefficient = 1/4
+  proportional = 50; // P coefficient = 1/4
   derivative = 256; // D coefficient = 1
 }
 

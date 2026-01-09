@@ -181,12 +181,14 @@ void MazeSolver::addDecision(Decisions d) {
         path[count - 2] = FORWARD;
         path[count] = NONE;
         path[count - 1] = NONE;
-        count = count - 2;
+        count--;
+        return; 
       } else if(path[count] == FORWARD) { //LBF
         path[count - 2] = RIGHT;
         path[count] = NONE;
         path[count - 1] = NONE;
-        count = count - 2;
+        count--;
+        return; 
       }
     }
     else if(path[count - 2] == FORWARD) { 
@@ -194,12 +196,14 @@ void MazeSolver::addDecision(Decisions d) {
         path[count - 2] = RIGHT;
         path[count] = NONE;
         path[count - 1] = NONE;
-        count = count - 2;
+        count--;
+        return; 
       } else if(path[count] == FORWARD) { //FBF
         path[count - 2] = BACK;
         path[count] = NONE;
         path[count - 1] = NONE;
-        count = count - 2;
+        count--;
+        return; 
       }
     }
     else if(path[count - 2] == RIGHT) { //RBL
@@ -207,7 +211,8 @@ void MazeSolver::addDecision(Decisions d) {
         path[count - 2] = BACK;
         path[count] = NONE;
         path[count - 1] = NONE;
-        count = count - 2;        
+        count--;
+        return;        
       }
     }
   }
