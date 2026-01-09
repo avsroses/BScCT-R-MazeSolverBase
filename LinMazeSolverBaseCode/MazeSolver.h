@@ -12,6 +12,7 @@ enum State {
   FAKE_END
 };
 
+//enum of each decision made for memory
 enum Decisions {
   NONE,
   RIGHT,

@@ -211,7 +211,7 @@ void MazeSolver::displayOnScreen() {
 void MazeSolver::loop() {
   // display.clear();
   display.gotoXY(0, 0);
-  display.print(state);
+  // display.print(state);
 
   if (state == LINE_FOLLOWER) {
     followLine();
