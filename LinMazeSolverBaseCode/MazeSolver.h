@@ -40,7 +40,7 @@ class MazeSolver {
   //turn robot around
   void uTurn();
   //change enum direction to characters
-  void directionToCharacter();
+  char directionToCharacter(Decisions d);
   //display path on screen
   void displayOnScreen();
   

@@ -171,8 +171,16 @@ void MazeSolver::uTurn() {
 //DIRECTION TO CHARACTER
 //Changing numerial value of direction to a letter
 //**********************
-void MazeSolver::directionToCharacter() {
-  
+char MazeSolver::directionToCharacter(Decisions d) {
+  if (d == RIGHT){
+    return 'R';
+  } else if (d == LEFT){
+    return 'L';
+  } else if (d == BACK) {
+    return 'B';
+  } else if (d == FORWARD) {
+    return 'F';
+  }
 }
 
 //**********************
