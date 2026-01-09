@@ -7,6 +7,7 @@ using namespace Pololu3piPlus32U4;
 #include "Shared.h"
 MazeSolver::MazeSolver() {
   state = LINE_FOLLOWER;
+  decisions = FORWARD;
 }
 
 //***********
@@ -61,7 +62,9 @@ void MazeSolver::checkIfJunction() {
 //******************
 void MazeSolver::checkIfDeadEnd() {
   lineSensors.readLineBlack(lineSensorValues);
-  if (lineSensorValues[2] < 500) state = U_TURN;
+  if (lineSensorValues[2] < 500) {
+    state = U_TURN;
+  } 
 }
 
 
