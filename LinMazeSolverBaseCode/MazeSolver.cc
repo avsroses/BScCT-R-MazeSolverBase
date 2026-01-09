@@ -170,7 +170,7 @@ void MazeSolver::uTurn() {
 
 //************
 //ADD DECISIONS
-//adds decisions to path
+//remove unnecessary paths
 //************
 void MazeSolver::addDecision(Decisions d) {
   path[count] = d;
