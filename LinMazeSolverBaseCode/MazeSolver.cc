@@ -121,7 +121,7 @@ void MazeSolver::turnLeft() {
   motors.setSpeeds(baseSpeed, baseSpeed);
   delay(250);
   motors.setSpeeds(0, 0);
-
+  //turns robot left
   motors.setSpeeds(-baseSpeed, baseSpeed);
   delay(770);
   motors.setSpeeds(0, 0);
@@ -137,7 +137,7 @@ void MazeSolver::turnRight() {
   motors.setSpeeds(baseSpeed, baseSpeed);
   delay(250);
   motors.setSpeeds(0, 0);
-
+  //turns robot right
   motors.setSpeeds(baseSpeed, -baseSpeed);
   delay(770);
   motors.setSpeeds(0, 0);
