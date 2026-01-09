@@ -94,7 +94,7 @@ void MazeSolver::identifyJunction() {
 
   if (lineSensorValues[2] > 750) {
     motors.setSpeeds(baseSpeed, baseSpeed);
-    delay(250);
+    delay(100);
     state = LINE_FOLLOWER;
     return;
   }
