@@ -222,8 +222,8 @@ void MazeSolver::addDecision(Decisions d) {
 char MazeSolver::directionToCharacter(Decisions d) {
   if (d == NONE) {
     return ' ';
-  // }else if (d == RIGHT){
-  //   return 'R';
+  }else if (d == RIGHT){
+    return 'R';
   } else if (d == LEFT){
     return 'L';
   } else if (d == BACK) {
