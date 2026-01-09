@@ -150,9 +150,9 @@ void MazeSolver::turnRight() {
 //******
 void MazeSolver::uTurn() {
   motors.setSpeeds(-baseSpeed, baseSpeed);
-  delay(1450);
+  delay(1500);
   motors.setSpeeds(0, 0);
-  state = LINE_FOLLOWER;
+  state = FAKE_END;
 }
 
 //*****************
