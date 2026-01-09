@@ -89,12 +89,12 @@ void MazeSolver::identifyJunction() {
 
   // if there's a left take it
   if (lineSensorValues[0] > 750) {
+    state = TURN_LEFT;
     if(lineSensorValues[2] > 750 || lineSensorValues[4] > 750) {
       state = TURN_LEFT;
       addDecision(LEFT);
       displayOnScreen();
     }
-    state = TURN_LEFT;
     return;
   } 
 
@@ -178,36 +178,36 @@ void MazeSolver::addDecision(Decisions d) {
   if(path[count -1] == BACK) {
     if(path[count - 2] == LEFT) {
       if(path[count] == LEFT){ //LBL
-        path[count - 2] == FORWARD;
-        path[count] == NONE;
-        path[count - 1] == NONE;
-        count - 1;
+        path[count - 2] = FORWARD;
+        path[count] = NONE;
+        path[count - 1] = NONE;
+        count = count - 2;
       } else if(path[count] == FORWARD) { //LBF
-        path[count - 2] == RIGHT;
-        path[count] == NONE;
-        path[count - 1] == NONE;
-        count - 1;
+        path[count - 2] = RIGHT;
+        path[count] = NONE;
+        path[count - 1] = NONE;
+        count = count - 2;
       }
     }
     else if(path[count - 2] == FORWARD) { 
       if(path[count] == LEFT) { //FBL
-        path[count - 2] == RIGHT;
-        path[count] == NONE;
-        path[count - 1] == NONE;
+        path[count - 2] = RIGHT;
+        path[count] = NONE;
+        path[count - 1] = NONE;
         count - 1;
       } else if(path[count] == FORWARD) { //FBF
-        path[count - 2] == BACK;
-        path[count] == NONE;
-        path[count - 1] == NONE;
-        count - 1;
+        path[count - 2] = BACK;
+        path[count] = NONE;
+        path[count - 1] = NONE;
+        count = count - 2;
       }
     }
     else if(path[count - 2] == RIGHT) { //RBL
       if(path[count] == LEFT){
-        path[count - 2] == BACK;
-        path[count] == NONE;
-        path[count - 1] == NONE;
-        count - 1;        
+        path[count - 2] = BACK;
+        path[count] = NONE;
+        path[count - 1] = NONE;
+        count = count - 2;        
       }
     }
   }
