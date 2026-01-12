@@ -42,4 +42,5 @@ To connect the Pololu to the Arduino IDE you must install the board drivers. To 
 After installing the boards, you will now need to install the Pololu3PiPlus32U4 library. This is done by simply searching for Pololu3PiPlus32U4 in the libraries manager. 
 
 ### Notes
-- 
+- MazeSolver.h
+- SolutionFollower.h
