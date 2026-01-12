@@ -50,7 +50,10 @@ class MazeSolver {
 
     Decisions path [64]; //vector for memory
     int count = 0;
-    
+
+    //check if Pololu is finished
+    bool isFinished();
+
     // constructor
     MazeSolver();
 
