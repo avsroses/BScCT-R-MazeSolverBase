@@ -53,7 +53,35 @@ void SolutionFollower::checkIfJunction() {
 //Identify junction or turn
 //*****************
 void SolutionFollower::identifyJunction() {
-  
+  delay(500);
+  // move forward to identify other junctions
+  motors.setSpeeds(baseSpeed, baseSpeed);
+  delay(260);
+  motors.setSpeeds(0, 0);
+  lineSensors.readLineBlack(lineSensorValues);
+
+  // if can sense everywhere -> FINISHED
+  if (lineSensorValues[0] > 950 && lineSensorValues[1] > 950 && lineSensorValues[2] > 950 && lineSensorValues[3] > 950 && lineSensorValues[4] > 950) {
+    state = FINISHED;
+    return;
+  }
+
+  // case -> a possible left is detected
+  if (lineSensorValues[0] > 750) {
+    if(lineSensorValues[2] < 750 && lineSensorValues[4] < 750) {
+      state = TURN_LEFT;
+      return;
+    }
+  }
+
+  //case -> a possible right is detected
+  if (lineSensorValues[4] > 750) {
+    if(lineSensorValues[0] < 750 && lineSensorValues[2] < 750) {
+      state = TURN_RIGHT;
+      return;
+    }
+  }
+
 }
 
 
