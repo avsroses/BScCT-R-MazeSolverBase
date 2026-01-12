@@ -22,6 +22,9 @@ enum Decisions {
 };
 
 class MazeSolver {
+  //*******
+  //PRIVATE
+  //*******
   private:
   State state; // value of type state
 
@@ -46,6 +49,9 @@ class MazeSolver {
   //display path on screen
   void displayOnScreen();
   
+  //******
+  //PUBLIC
+  //******
   public:
 
     Decisions path [64]; //vector for memory

@@ -98,7 +98,6 @@ void MazeSolver::identifyJunction() {
     return;
   } 
 
-
   if (lineSensorValues[2] > 750) {
     motors.setSpeeds(baseSpeed, baseSpeed);
     delay(110);
