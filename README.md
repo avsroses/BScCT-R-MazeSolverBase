@@ -8,6 +8,7 @@ This project is for a maze solving robot that can navigate a maze to find the op
 ## Software
 - ArduinoIDE
 - Pololu A-Star Boards
+- Pololu3PiPlus32U4 library
   
 # Getting Started
 
