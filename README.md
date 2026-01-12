@@ -1,5 +1,5 @@
 # Pololu 3Pi
-This project is for a maze solving robot
+This project is for a maze solving robot that can navigate a maze to find the optimal route and then remember that route to retraverse the maze.
 # Prerequisites
 
 ## Hardware
