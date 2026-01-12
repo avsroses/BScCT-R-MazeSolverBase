@@ -43,6 +43,7 @@ After installing the boards, you will now need to install the Pololu3PiPlus32U4 
 
 ## Notes
 ### MazeSolver.h
+There are two enums in this file, one for the current state of the Pololu and one for the decisions that can be made by it. These enums are then used in other files (MazeSolver.cc, SolutionFollower.cc) to call on different functions
 ### SolutionFollower.h
 ### FAKE_END
 FAKE_END is a variable that can be used for debugging. It's declared in the state enum and its code can be found in the loop function of both MazeSolver.cc and SolutionFollower.cc. 
