@@ -11,6 +11,8 @@ class SolutionFollower {
   void followLine();
   //checking if there is a junction
   void checkIfJunction();
+  //checking what type of junction
+  void identifyJunction();
 
 
 
