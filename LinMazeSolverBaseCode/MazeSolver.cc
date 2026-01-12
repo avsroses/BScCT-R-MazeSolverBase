@@ -256,6 +256,8 @@ void MazeSolver::displayOnScreen() {
   }
 }
 
+//PUBLIC FUNCTIONS
+
 //**************
 //IS IT FINISHED
 //checks if the Pololu has reached the finish
@@ -267,6 +269,7 @@ bool MazeSolver::isFinished() {
     return false;
   }
 }
+
 
 //*****************
 //THE LOOP FUNCTION
