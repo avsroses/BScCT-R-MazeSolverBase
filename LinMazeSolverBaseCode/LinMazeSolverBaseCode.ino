@@ -184,5 +184,7 @@ void loop()
     return;
   }
 
+  display.clear();
+  display.gotoXY(0, 0);
   display.print(F("Finished"));
 }
