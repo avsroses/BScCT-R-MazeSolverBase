@@ -180,7 +180,6 @@ void setup()
 
 void loop()
 {
-  mazeSolver.loop();
   if(!mazeSolver.isFinished()){
     mazeSolver.loop();
 
@@ -193,7 +192,6 @@ void loop()
       }
       solutionFollower.totalLength = mazeSolver.count;
 
-      display.clear();
       display.gotoXY(0, 1);
       display.print(F("Finished"));
       while(!buttonB.getSingleDebouncedPress()); // wait for button b to be pressed before continuing
