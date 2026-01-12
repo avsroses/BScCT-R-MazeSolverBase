@@ -82,7 +82,22 @@ void SolutionFollower::identifyJunction() {
     }
   }
 
-  //case -> 
+  //case -> is it a junction
+  Decisions d = path[count];
+
+  switch(d) {
+    case LEFT : {
+      state = TURN_LEFT;
+      break;
+    }
+    case RIGHT : {
+      state = TURN_RIGHT;
+      break;
+    }
+    case FORWARD : {
+      
+    }
+  }
 
 }
 

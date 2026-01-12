@@ -5,6 +5,7 @@
 class SolutionFollower {
   private:
   State state; //value of type state
+  int count = 0;
 
   //display path on screen
   void displayOnScreen();
@@ -24,7 +25,7 @@ class SolutionFollower {
 
   Decisions path[64];
   int totalLength;
-  
+
   // function to be called at every main loop
   void loop();
 

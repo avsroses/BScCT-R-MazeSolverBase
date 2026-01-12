@@ -28,7 +28,6 @@ class MazeSolver {
   private:
   State state; // value of type state
 
-
   void followLine();
   //checking if there is a junction
   void checkIfJunction();
