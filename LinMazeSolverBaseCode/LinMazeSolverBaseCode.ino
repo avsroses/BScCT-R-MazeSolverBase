@@ -191,6 +191,7 @@ void loop()
 
         solutionFollower.path[i] = d;
       }
+      solutionFollower.totalLength = mazeSolver.count;
     }
 
     return;
