@@ -48,6 +48,14 @@ void MazeSolver::checkIfJunction() {
   }
 }
 
+//*****************
+//IDENTIFY JUNCTION
+//Identify junction or turn
+//*****************
+void SolutionFollower::IdentifyJuncion() {
+  
+}
+
 
 //*********
 //LEFT TURN
