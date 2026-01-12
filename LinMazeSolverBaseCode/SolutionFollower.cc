@@ -132,7 +132,7 @@ void SolutionFollower::turnLeft() {
 //**********
 void SolutionFollower::turnRight() {
   motors.setSpeeds(baseSpeed, baseSpeed);
-  delay(350);
+  delay(250);
   motors.setSpeeds(0, 0);
   //turns robot right
   motors.setSpeeds(baseSpeed, -baseSpeed);

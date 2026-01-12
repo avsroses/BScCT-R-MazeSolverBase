@@ -200,6 +200,10 @@ void loop()
     return;
   }
 
+  // solutionFollower.path[0] = RIGHT;
+  // solutionFollower.path[1] = LEFT;
+  // solutionFollower.totalLength = 2;
+
   //if maze solver is finished -> follow solution
   solutionFollower.loop();
 
