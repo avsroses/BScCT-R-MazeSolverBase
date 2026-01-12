@@ -87,3 +87,7 @@ void SolutionFollower::turnRight() {
   state = LINE_FOLLOWER;
 }
 
+void SolutionFollower::loop(){
+  followLine();
+}
+

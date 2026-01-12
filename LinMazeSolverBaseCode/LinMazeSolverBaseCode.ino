@@ -194,10 +194,16 @@ void loop()
       solutionFollower.totalLength = mazeSolver.count;
     }
 
+    display.clear();
+    display.gotoXY(1, 0);
+    display.print(F("Finished"));
+    while(!buttonB.getSingleDebouncedPress()); // wait for button b to be pressed before continuing
+
     return;
   }
 
-  display.clear();
-  display.gotoXY(0, 0);
-  display.print(F("Finished"));
+  //if maze solver is finished -> follow solution
+  solutionFollower.loop();
+
+
 }
