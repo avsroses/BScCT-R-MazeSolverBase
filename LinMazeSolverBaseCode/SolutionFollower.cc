@@ -82,6 +82,11 @@ void SolutionFollower::identifyJunction() {
     }
   }
 
+  if(count == totalLength) {
+    state = FINISHED;
+    return;
+  }
+
   //case -> is it a junction
   Decisions d = path[count];
 
@@ -127,7 +132,7 @@ void SolutionFollower::turnLeft() {
 //**********
 void SolutionFollower::turnRight() {
   motors.setSpeeds(baseSpeed, baseSpeed);
-  delay(250);
+  delay(350);
   motors.setSpeeds(0, 0);
   //turns robot right
   motors.setSpeeds(baseSpeed, -baseSpeed);
