@@ -181,6 +181,14 @@ void loop()
   mazeSolver.loop();
   if(!mazeSolver.isFinished()){
     mazeSolver.loop();
+
+    //copy over path from mazeSolver to solutionFollower
+    if(mazeSolver.isFinished()){
+      for(int i = 0; i < 64; i++) {
+        Decisions d = mazeSolver.path[i];
+      }
+    }
+
     return;
   }
 

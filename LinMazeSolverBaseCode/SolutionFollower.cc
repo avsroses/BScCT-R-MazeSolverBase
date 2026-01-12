@@ -31,7 +31,7 @@ void SolutionFollower::followLine() {
 //CHECKING FOR A JUNCTION
 //Check sensors to see if there could be a junction
 //***********************
-void MazeSolver::checkIfJunction() {
+void SolutionFollower::checkIfJunction() {
   lineSensors.readLineBlack(lineSensorValues);
 
   bool junction = false;
@@ -52,8 +52,8 @@ void MazeSolver::checkIfJunction() {
 //IDENTIFY JUNCTION
 //Identify junction or turn
 //*****************
-void SolutionFollower::IdentifyJuncion() {
-  
+void SolutionFollower::identifyJunction() {
+
 }
 
 

@@ -21,6 +21,8 @@ class SolutionFollower {
 
 
   public:
+
+  Decisions path[64];
   // function to be called at every main loop
   void loop();
 
