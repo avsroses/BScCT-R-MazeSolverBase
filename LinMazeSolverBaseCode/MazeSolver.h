@@ -30,7 +30,7 @@ class MazeSolver {
 
 
   void followLine();
-  //checking junction
+  //checking if there is a junction
   void checkIfJunction();
   //checking for dead end
   void checkIfDeadEnd();

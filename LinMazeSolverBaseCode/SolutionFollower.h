@@ -4,7 +4,15 @@
 class SolutionFollower {
   private:
   State state; //value of type state
-  
+
+  //display path on screen
+  void displayOnScreen();
+  //follows line
+  void followLine();
+  //checking if there is a junction
+  void checkIfJunction();
+
+
 
   public:
 
