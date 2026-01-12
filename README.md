@@ -1,16 +1,22 @@
 # Pololu 3Pi
 This project is for a maze solving robot
 # Prerequisites
+
 ## Hardware
 - [Pololu 3Pi 32U4 OLED Robot](https://www.pololu.com/product/4975)
+  
 ## Software
 - ArduinoIDE
--
--
+- Pololu A-Star Boards
+  
 # Getting Started
+
 ## Hardware
-Pololu
+
+Pololu 3Pi
+
 ## Software
+
 To connect the Pololu to the Arduino IDE you must install the board drivers. To do so follow the steps below:
 
 1. In the Arduino IDE, open the File menu (Windows/Linux) or the Arduino menu (macOS) and select "Preferences".
@@ -34,3 +40,6 @@ To connect the Pololu to the Arduino IDE you must install the board drivers. To 
     "Install" button.
     
 After installing the boards, you will now need to install the Pololu3PiPlus32U4 library. This is done by simply searching for Pololu3PiPlus32U4 in the libraries manager. 
+
+### Notes
+- 
