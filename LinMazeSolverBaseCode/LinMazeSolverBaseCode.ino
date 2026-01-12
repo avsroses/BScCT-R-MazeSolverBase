@@ -192,12 +192,12 @@ void loop()
         solutionFollower.path[i] = d;
       }
       solutionFollower.totalLength = mazeSolver.count;
-    }
 
-    display.clear();
-    display.gotoXY(1, 0);
-    display.print(F("Finished"));
-    while(!buttonB.getSingleDebouncedPress()); // wait for button b to be pressed before continuing
+      display.clear();
+      display.gotoXY(0, 1);
+      display.print(F("Finished"));
+      while(!buttonB.getSingleDebouncedPress()); // wait for button b to be pressed before continuing
+    }
 
     return;
   }
