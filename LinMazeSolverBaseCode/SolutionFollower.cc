@@ -95,10 +95,14 @@ void SolutionFollower::identifyJunction() {
       break;
     }
     case FORWARD : {
-      
+      motors.setSpeeds(baseSpeed, baseSpeed);
+      delay(110);
+      state = LINE_FOLLOWER;
+      break;
     }
   }
 
+  count++;
 }
 
 
