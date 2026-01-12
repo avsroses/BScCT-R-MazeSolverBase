@@ -1,5 +1,6 @@
 #ifndef SOLUTION_H
 #define SOLUTION_H
+#include "MazeSolver.h"
 
 class SolutionFollower {
   private:
@@ -13,10 +14,15 @@ class SolutionFollower {
   void checkIfJunction();
   //checking what type of junction
   void identifyJunction();
-
+  //turn direction left
+  void turnLeft();
+  //turn direction right
+  void turnRight();
 
 
   public:
+  // function to be called at every main loop
+  void loop();
 
 };
 

@@ -121,7 +121,7 @@ void MazeSolver::identifyJunction() {
 
 
 
-bool first = true;
+//bool first = true;
 
 //*********
 //LEFT TURN
